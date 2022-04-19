@@ -51,6 +51,7 @@
 .subGlobal {
     flex-direction: row;
     overflow-x: scroll;
+    overflow-y: hidden;
     width: 100%;
     height: 1220px;
     margin-top: 150px;
