@@ -248,7 +248,7 @@
 }
 
 .playerPuissanceButton {
-    --progress-amount: 20%;
+    --progress-amount: 50%;
     z-index: 3;
     background: linear-gradient(193.02deg, #43063F 0%, #4D7193 57.81%, #6381D0 100%);
     position: absolute;
@@ -271,7 +271,7 @@
 
 
 .playerPuissanceBar {
-    --progress-amount: 20%;
+    --progress-amount: 50%;
     position: absolute;
     background: linear-gradient(193.02deg, #43063F 0%, #4D7193 57.81%, #6381D0 100%);
     bottom:0;
