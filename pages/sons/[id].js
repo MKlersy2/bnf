@@ -12,11 +12,24 @@ import BigPlay from '../../components/svg/bigPlay';
 import Script from '../script/scriptMenu';
 import WaitCount from '../script/waitCount';
 import { motion } from 'framer-motion'
-import { launchMusic, stopMusic, retour } from '../script/musicPlayer';
+import { launchMusic, stopMusic, retour, stopQuitMusic } from '../script/musicPlayer';
 import Pause from '../../components/svg/pause';
 import MusicPlayer from '../script/musicPlayer';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function Son({nameCollection, collectionSon}) {
+    const router = useRouter();
+    useEffect(() => {
+        router.events.on('routeChangeComplete', () => {
+            stopQuitMusic()
+        })
+        return () => {
+            router.events.off('routeChangeComplete', () => {
+                console.log('on quitte')
+            })
+        };
+    }, [router.events]);
     const titre = nameCollection;
     const variants = {
         hidden: { opacity: 0, x: 200, y: 0 },

@@ -1,5 +1,4 @@
 import sons from '../../styles/sons.module.css';
-
 var actualSon = '';
 var actualIndex = '';
 var mu = true;
@@ -130,35 +129,41 @@ export function pos2(e, puissanceButton, puissance, puissancePlayer) {
         }
     }
 }
-
-export function stopMusic(detect) {
-    clearInterval(actualProgress);
-    const element = document.querySelector(`#player` + actualIndex + ` > div > div > .${sons.playerLaunch}`);    
-    const buttonPause = document.querySelector(`#pause` + actualIndex);
-    const buttonStart = document.querySelector(`#play` + actualIndex);
-    const progressPlayer = document.querySelector(`#player` + actualIndex + ` > div > div > .${sons.progressPlayer}`);
-    progressPlayer.removeEventListener('mousedown', mouseMoveProgress, false);
-    progressPlayer.removeEventListener('mouseup', mouseUpProgress, false);
-    progressPlayer.removeEventListener('mousemove', mouseDownProgress, false);
-    element.classList.remove('toggle');
-    buttonStart.classList.remove('toggle');
-    buttonPause.classList.add('toggle');
-    actualSon.pause();
-    if(detect != 'no') {
-        actualIndex = '';
-        actualSon = '';
+export function stopQuitMusic() {
+    if(actualSon != '') {
+        actualSon.pause();
     }
-    let timeInit = 3*60;
-    var timeleft = timeInit;
-    const timerCount = setInterval(function() {
-        if(timeleft <= 0) {
-            window.location.href = '/wait';
-            clearInterval(timerCount);
+}
+export function stopMusic(detect) {
+    if(actualSon !== '') {
+        clearInterval(actualProgress);
+        const element = document.querySelector(`#player` + actualIndex + ` > div > div > .${sons.playerLaunch}`);    
+        const buttonPause = document.querySelector(`#pause` + actualIndex);
+        const buttonStart = document.querySelector(`#play` + actualIndex);
+        const progressPlayer = document.querySelector(`#player` + actualIndex + ` > div > div > .${sons.progressPlayer}`);
+        progressPlayer.removeEventListener('mousedown', mouseMoveProgress, false);
+        progressPlayer.removeEventListener('mouseup', mouseUpProgress, false);
+        progressPlayer.removeEventListener('mousemove', mouseDownProgress, false);
+        element.classList.remove('toggle');
+        buttonStart.classList.remove('toggle');
+        buttonPause.classList.add('toggle');
+        actualSon.pause();
+        if(detect != 'no') {
+            actualIndex = '';
+            actualSon = '';
         }
-        timeleft-=1;
-        console.log(timeleft)
-    }, 1000);
-    window.timerCount = timerCount;
+        let timeInit = 3*60;
+        var timeleft = timeInit;
+        const timerCount = setInterval(function() {
+            if(timeleft <= 0) {
+                window.location.href = '/wait';
+                clearInterval(timerCount);
+            }
+            timeleft-=1;
+            console.log(timeleft)
+        }, 1000);
+        window.timerCount = timerCount;
+    }
 }
 
 export function retour(indexInput) {
@@ -183,6 +188,7 @@ export function actual() {
         }
     }, 1000);
 }
+
 import React from "react";
 export default class Layout extends React.Component {
     componentDidMount() {
@@ -217,6 +223,7 @@ export default class Layout extends React.Component {
                 })
         })
     }
+
     render() {
         return (
             <></>
