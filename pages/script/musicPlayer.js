@@ -47,6 +47,10 @@ export function launchMusic(url, index) {
     progressPlayer.progress = progress;
     progressPlayer.progressPlayer = progressPlayer;
     progressPlayer.index = index;
+
+    son.addEventListener("ended", function(){
+        stopMusic()
+   });
 }
 
 export function mouseDownProgress(e) {
@@ -152,6 +156,7 @@ export function stopMusic(detect) {
             clearInterval(timerCount);
         }
         timeleft-=1;
+        console.log(timeleft)
     }, 1000);
     window.timerCount = timerCount;
 }
