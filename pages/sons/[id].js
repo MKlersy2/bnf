@@ -6,14 +6,11 @@ import Arrow from '../../components/svg/arrow';
 import Link from 'next/link';
 import Image from 'next/image';
 import Replay from '../../components/svg/replay';
-import Start from '../../components/svg/start';
 import SonIcon from '../../components/svg/son';
-import BigPlay from '../../components/svg/bigPlay';
 import Script from '../script/scriptMenu';
 import WaitCount from '../script/waitCount';
 import { motion } from 'framer-motion'
 import { launchMusic, stopMusic, retour, stopQuitMusic } from '../script/musicPlayer';
-import Pause from '../../components/svg/pause';
 import MusicPlayer from '../script/musicPlayer';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
