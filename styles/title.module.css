@@ -1,0 +1,31 @@
+
+.global {
+    padding-top: 100px;
+}
+
+.subGlobal {
+    align-items: center;
+    gap: var(--barre-padding);
+    align-items: baseline;
+}
+.barre {
+    background-color: white;
+    height: 15px;
+    width: var(--barre-width);
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+}
+.title {
+    font-size: 60px;
+    white-space: pre-line
+}
+.subTitle {
+    margin-left: calc(var(--barre-padding) + var(--barre-width));
+    margin-top: 30px;
+    font-size: 25px;
+    font-style: italic;
+    font-family: 'GraphikLight';
+}

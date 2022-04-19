@@ -1,9 +1,51 @@
+:root {
+  --barre-width: 130px;
+  --barre-padding: 50px;
+  --bottom-page: 40px;
+  --faux-blanc: #F0F0F0;
+}
+
+@font-face {
+  font-family: 'GraphikMedium';
+  font-style: medium;
+  src: url('../public/police/graphik/Graphik-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GraphikReg';
+  font-style: normal;
+  src: url('../public/police/graphik/Graphik-Regular.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'GraphikLight';
+  font-style: light;
+  src: url('../public/police/graphik/Graphik-Light.woff') format('woff')
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  color: white;
+}
+
+main {
+  background: linear-gradient(20deg, rgba(40, 82, 140, 1) 0%, rgba(214, 158, 126, 1) 100%);
+  width: 100%;
+  height:100%;
+}
+
+main.index {
+  background: linear-gradient(20deg, rgba(40, 82, 140, 0.705) 0%, rgba(214, 158, 126, 0.701) 100%);
 }
 
 a {
@@ -13,4 +55,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+div {
+  font-family: 'GraphikReg';
+}
+
+.toggle {
+  display: none !important;
 }

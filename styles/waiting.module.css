@@ -1,0 +1,19 @@
+.global {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    font-size: 60px;
+}
+
+.barre {
+    background-color: var(--faux-blanc);
+    width: 190px;
+    height: 10px;
+}
+
+.texte {
+    padding: 50px
+}

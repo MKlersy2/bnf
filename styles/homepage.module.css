@@ -1,0 +1,77 @@
+.vynil {
+    position: absolute;
+    top:0;
+    left:0; 
+    width: 1200px;
+    height: 1920px;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.global {
+    width:100%;
+    height:100%;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    width: 100%;
+    font-size: 100px;
+    height: max-content;
+    text-align: left;
+}
+
+.rowTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+.rowTitle:nth-child(1) .col:nth-child(1) {
+    width: 70px;
+    height: 15px;
+    background-color: white;
+}
+
+.rowTitle:nth-child(2) .col:nth-child(1) {
+    width: 70px;
+}
+
+.rowTitle:nth-child(2) .col:nth-child(2) {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+}
+
+.rowTitle:nth-child(2) .col:nth-child(3) {
+    flex-grow: 100;
+    height: 15px;
+    background-color: white;
+}
+
+.col:nth-child(2) {
+    padding: 0 70px;
+    width: max-content;
+}
+
+.subText {
+    font-size: 40px;
+}
+
+.subtitle {
+    margin-left: 140px;
+    align-items: center;
+    gap:20px
+}
+
+.button {
+    margin-top:20px;
+    margin-left: 140px;
+    font-size: 30px;
+}
