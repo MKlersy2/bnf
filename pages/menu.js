@@ -101,10 +101,10 @@ export function defOrdre(index, ordre) {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`http://localhost:8000/collection`, {
+    const res = await fetch(`https://bnf.vercel.app/api/collection`, {
         headers: { Accept: "application/json" },
     })
     const collection = await res.json()
-    console.log(collection)
+    console.error(collection)
     return{props:{collection}}
 }

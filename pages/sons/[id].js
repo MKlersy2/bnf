@@ -117,11 +117,11 @@ export default function Son({nameCollection, collectionSon}) {
 export async function getServerSideProps(context) {
     const { id } = context.query
     const reference = id;
-    const res = await fetch(`http://localhost:8000/collection?reference=${reference}`, {
+    const res = await fetch(`https://bnf.vercel.app/api/collection`, {
         headers: { Accept: "application/json" },
     })
     const collectionSons = await res.json()
-    const nameCollection = collectionSons[0].name;
-    const collectionSon = collectionSons[0].sons;
+    const collectionSon = collectionSons[reference].sons;
+    const nameCollection = collectionSons[reference].name;
     return{props:{nameCollection, collectionSon}}
 }
