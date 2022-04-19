@@ -1,4 +1,7 @@
-{
+export default function handler(req, res) {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json({
     "collection": [
         {
             "name": "Voix d’écrivains et de poètes",
@@ -285,3 +288,4 @@
         }
     ]
 }
+);}
