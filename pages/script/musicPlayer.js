@@ -167,7 +167,7 @@ export function stopMusic(detect) {
 }
 
 export function retour(indexInput) {
-    if(indexInput == actualIndex) {
+    if(indexInput == actualIndex && actualSon != '') {
         actualSon.currentTime = 0;
         const progress = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressBar}`);
         const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);

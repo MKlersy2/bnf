@@ -93,11 +93,16 @@ export default function Menu({collection}) {
 }
 
 export function defOrdre(index, ordre) {
-    if(ordre == 'neg') {
-        return 1 - index*0.1;
+    if(index%2) {
+        return (index - 1) *0.1
     } else {
-        return index*0.1;
+        return index *0.1
     }
+    // if(ordre == 'neg') {
+    //     return 1 - index*0.1;
+    // } else {
+    //     return index*0.1;
+    // }
 }
 
 export async function getServerSideProps() {

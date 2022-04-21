@@ -31,7 +31,17 @@
     -o-transition: .3s;
 }
 
+.subListe:active {
+    background-color: var(--faux-blanc);
+    color: black;
+}
+
+.subListe:active > .image, .subListe:active > .filtreColor, .subListe:active > .filtreNoir {
+    display: none !important;
+}
+
 .desc {
+    font-family: 'GraphikMedium';
     z-index: 3;
     opacity: 0.9;
     display: flex;

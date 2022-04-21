@@ -88,7 +88,7 @@ export default function Son({nameCollection, collectionSon}) {
                                             <div id={`play` + index} onClick={() => launchMusic('/'+collectionSon.url, index)} className={sons.playPlayer}><Image width={23} height={26} src={'/icon/start.svg'} alt={'Petit bouton play'}/></div>
                                             <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image width={23} height={27} src={'/icon/pause.svg'} alt={'Bouton pause'}/></div>
                                             <div className={sons.puissancePlayer}>
-                                                <SonIcon/>
+                                                <div className={sons.puissanceIcon}><SonIcon/></div>
                                                 <div className={sons.puissanceGlobal}>
                                                     <div className={sons.puissancePlayerBg}>
                                                         <div className={sons.playerPuissanceBar}></div>
