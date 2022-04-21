@@ -184,8 +184,12 @@ export function actual() {
         } else {
             const progress = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressBar}`);
             const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);
-            progress.style.width = actualSon.currentTime/actualSon.duration * 100 + '%';
-            progressButton.style.left = actualSon.currentTime/actualSon.duration * 100 + '%';
+            if(progress !== null) {
+                progress.style.width = actualSon.currentTime/actualSon.duration * 100 + '%';
+                progressButton.style.left = actualSon.currentTime/actualSon.duration * 100 + '%';
+            } else {
+                clearInterval(actualProgress)
+            }
         }
     }, 1000);
 }
