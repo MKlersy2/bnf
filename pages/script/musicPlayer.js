@@ -178,7 +178,8 @@ export function retour(indexInput) {
 
 export function actual() {
     actualProgress = setInterval(() => {
-        if(actualIndex == '') {
+        console.log(actualIndex)
+        if(actualIndex === '') {
             clearInterval(actualProgress)
         } else {
             const progress = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressBar}`);
