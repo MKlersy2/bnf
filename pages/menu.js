@@ -70,7 +70,7 @@ export default function Menu({collection}) {
                                 transition={{ type: 'linear', delay: defOrdre(index, ordre) }}
                                 className={`${menu.subListe} ${styles.buttonScale}`}>
                                     <div className={menu.image}>
-                                        <Image src={'/image/' + collection.img} width={400} height={400} alt={collection.name}/>
+                                        <Image src={'https://sandbox.fleurdepapier.fr/bnf-bancsonores/images/' + collection.img} width={400} height={400} alt={collection.name}/>
                                     </div>
                                     <div className={menu.filtreColor}></div>
                                     <div className={menu.filtreNoir}></div>
@@ -98,15 +98,10 @@ export function defOrdre(index, ordre) {
     } else {
         return index *0.1
     }
-    // if(ordre == 'neg') {
-    //     return 1 - index*0.1;
-    // } else {
-    //     return index*0.1;
-    // }
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`https://bnf.vercel.app/api/collection`, {
+    const res = await fetch(`https://sandbox.fleurdepapier.fr/bnf-bancsonores/list.json`, {
         headers: { Accept: "application/json" },
     })
     const collection = await res.json()
