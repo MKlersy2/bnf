@@ -67,11 +67,11 @@ export default function Son({nameCollection, collectionSon}) {
                         variants={variants}
                         className={`${sons.subGlobal} ${styles.displayFlex}`}>
                         {collectionSon.map((collectionSon, index) => (
-                            <div id={`player`+index} key={index} className={sons.playerGlobal}>
+                            <div id={`player`+index} key={index} className={`${sons.playerGlobal}`}>
                                 <div className={sons.playerSubGlobal}>
                                     <div className={sons.globalDisplay}>
-                                        <div id={`bigPlayGlobal` + index} className={sons.playerLaunch} onClick={() => launchMusic('/'+collectionSon.url, index)} >
-                                            <div id={`bigPlay` + index} className={sons.play}>
+                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic('/'+collectionSon.url, index)} >
+                                            <div id={`bigPlay` + index} className={`${sons.play}`}>
                                                 <Image width={67} height={80} src={'/icon/bigplay.svg'} alt={'Gros bouton play'}/>
                                                 {/* <BigPlay/> */}
                                             </div>
