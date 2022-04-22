@@ -85,6 +85,7 @@
 }
 
 .playerButton {
+    position: relative;
     background-color: var(--faux-blanc);
     border-radius: 0 0 10px 10px;
     -webkit-border-radius: 0 0 10px 10px;
@@ -296,4 +297,18 @@
     -moz-border-radius: 0 0 10px 10px;
     -ms-border-radius: 0 0 10px 10px;
     -o-border-radius: 0 0 10px 10px;
+}
+
+.actualTime, .totalTime {
+    position: absolute;
+    top:25px;
+    color: grey;
+    font-size: 20px;
+}
+
+.actualTime {
+    left: 15px;
+}
+.totalTime {
+    right: 15px;
 }

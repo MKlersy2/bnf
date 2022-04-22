@@ -28,6 +28,10 @@ export function launchMusic(url, index) {
             }
             son.currentTime = parseInt(width.replace(/%/g, '')) * son.duration / 100;
         }
+        const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
+        const valueTotalTimeSecond = Math.round(son.duration % 60) < 10 ? '0' + Math.round(son.duration % 60) : Math.round(son.duration % 60);
+        const valueTotalTimeMinute = Math.round(son.duration / 60) < 10 ? '0' + Math.round(son.duration / 60) : Math.round(son.duration / 60);
+        totalTime.innerHTML = valueTotalTimeMinute + ':' + valueTotalTimeSecond;
         actualSon = son;
         actualIndex = index;
         actual();
@@ -160,7 +164,6 @@ export function stopMusic(detect) {
                 clearInterval(timerCount);
             }
             timeleft-=1;
-            console.log(timeleft)
         }, 1000);
         window.timerCount = timerCount;
     }
@@ -178,13 +181,16 @@ export function retour(indexInput) {
 
 export function actual() {
     actualProgress = setInterval(() => {
-        console.log(actualIndex)
         if(actualIndex === '') {
             clearInterval(actualProgress)
         } else {
             const progress = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressBar}`);
             const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);
             if(progress !== null) {
+                const actualTime = document.querySelector(`#player` + actualIndex + ` > div > div > .${sons.actualTime}`);
+                const valueActualTimeSecond = Math.round(actualSon.currentTime % 60) < 10 ? '0' + Math.round(actualSon.currentTime % 60) : Math.round(actualSon.currentTime % 60);
+                const valueActualTimeMinute = Math.round(actualSon.currentTime / 60) < 10 ? '0' + Math.round(actualSon.currentTime / 60) : Math.round(actualSon.currentTime / 60);
+                actualTime.innerHTML = valueActualTimeMinute + ' : ' + valueActualTimeSecond;
                 progress.style.width = actualSon.currentTime/actualSon.duration * 100 + '%';
                 progressButton.style.left = actualSon.currentTime/actualSon.duration * 100 + '%';
             } else {

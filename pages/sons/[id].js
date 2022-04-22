@@ -83,6 +83,8 @@ export default function Son({nameCollection, collectionSon}) {
                                             <div className={sons.playerProgressBar}></div>
                                             <div className={sons.playerProgressButton}></div>
                                         </div>
+                                        <div className={sons.actualTime}></div>
+                                        <div className={sons.totalTime}></div>
                                         <div className={`${sons.actionsPlayer} ${styles.displayFlex}`}>
                                             <div className={sons.backPlayer} onClick={() => retour(index)}><Replay/></div>
                                             <div id={`play` + index} onClick={() => launchMusic('https://sandbox.fleurdepapier.fr/bnf-bancsonores/'+collectionSon.url, index)} className={sons.playPlayer}><Image width={23} height={26} src={'/icon/start.svg'} alt={'Petit bouton play'}/></div>
