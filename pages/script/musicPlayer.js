@@ -30,8 +30,8 @@ export function launchMusic(url, index) {
         }
         const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
         console.log(son.duration)
-        const valueTotalTimeSecond = Math.ceil(son.duration % 60) < 10 ? '0' + Math.ceil(son.duration % 60) : Math.ceil(son.duration % 60);
-        const valueTotalTimeMinute = Math.ceil(son.duration / 60) < 10 ? '0' + Math.ceil(son.duration / 60) : Math.ceil(son.duration / 60);
+        const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
+        const valueTotalTimeMinute = Math.floor(son.duration / 60) < 10 ? '0' + Math.floor(son.duration / 60) : Math.floor(son.duration / 60);
         totalTime.innerHTML = valueTotalTimeMinute + ':' + valueTotalTimeSecond;
         actualSon = son;
         actualIndex = index;
@@ -189,8 +189,8 @@ export function actual() {
             const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);
             if(progress !== null) {
                 const actualTime = document.querySelector(`#player` + actualIndex + ` > div > div > .${sons.actualTime}`);
-                const valueActualTimeSecond = Math.ceil(actualSon.currentTime % 60) < 10 ? '0' + Math.ceil(actualSon.currentTime % 60) : Math.ceil(actualSon.currentTime % 60);
-                const valueActualTimeMinute = Math.ceil(actualSon.currentTime / 60) < 10 ? '0' + Math.ceil(actualSon.currentTime / 60) : Math.ceil(actualSon.currentTime / 60);
+                const valueActualTimeSecond = Math.floor(actualSon.currentTime % 60) < 10 ? '0' + Math.floor(actualSon.currentTime % 60) : Math.floor(actualSon.currentTime % 60);
+                const valueActualTimeMinute = Math.floor(actualSon.currentTime / 60) < 10 ? '0' + Math.floor(actualSon.currentTime / 60) : Math.floor(actualSon.currentTime / 60);
                 actualTime.innerHTML = valueActualTimeMinute + ' : ' + valueActualTimeSecond;
                 progress.style.width = actualSon.currentTime/actualSon.duration * 100 + '%';
                 progressButton.style.left = actualSon.currentTime/actualSon.duration * 100 + '%';
