@@ -70,7 +70,7 @@ export default function Son({nameCollection, collectionSon}) {
                             <div id={`player`+index} key={index} className={`${sons.playerGlobal}`}>
                                 <div className={sons.playerSubGlobal}>
                                     <div className={sons.globalDisplay}>
-                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic('/'+collectionSon.url, index)} >
+                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic('https://sandbox.fleurdepapier.fr/bnf-bancsonores/'+collectionSon.url, index)} >
                                             <div id={`bigPlay` + index} className={`${sons.play}`}>
                                                 <Image width={67} height={80} src={'/icon/bigplay.svg'} alt={'Gros bouton play'}/>
                                                 {/* <BigPlay/> */}
