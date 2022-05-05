@@ -2,10 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['https://sandbox.fleurdepapier.fr/', 'sandbox.fleurdepapier.fr'],
+    domains: ['https://multimedia-ext.bnf.fr', 'multimedia-ext.bnf.fr'],
   },
   env: {
-    HOSTNAME: 'https://sandbox.fleurdepapier.fr/bnf-bancsonores/'
+    HOSTNAME: 'https://multimedia-ext.bnf.fr/bancs_sonores/'
   }
 }
 
