@@ -70,7 +70,7 @@ export default function Menu({collection}) {
                                 transition={{ type: 'linear', delay: defOrdre(index, ordre) }}
                                 className={`${menu.subListe} ${styles.buttonScale}`}>
                                     <div className={menu.image}>
-                                        <Image src={'https://sandbox.fleurdepapier.fr/bnf-bancsonores/images/' + collection.img} width={400} height={400} alt={collection.name}/>
+                                        <Image src={process.env.HOSTNAME + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
                                     </div>
                                     <div className={menu.filtreColor}></div>
                                     <div className={menu.filtreNoir}></div>
@@ -101,7 +101,7 @@ export function defOrdre(index, ordre) {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`https://sandbox.fleurdepapier.fr/bnf-bancsonores/list.json`, {
+    const res = await fetch(process.env.HOSTNAME + `list.json`, {
         headers: { Accept: "application/json" },
     })
     const collection = await res.json()
