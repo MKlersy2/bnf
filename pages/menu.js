@@ -7,9 +7,14 @@ import Link from 'next/link';
 import WaitCount from './script/waitCount';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import collection from './api/collection.json';
 
-export default function Menu({collection}) {
-
+export default function Menu() {
+    const myLoader = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`
+    }
+      
+    console.log(collection)
     const { query } = useRouter();
     const referer = query.referer;
     if(referer == 'son') {
@@ -70,7 +75,7 @@ export default function Menu({collection}) {
                                 transition={{ type: 'linear', delay: defOrdre(index, ordre) }}
                                 className={`${menu.subListe} ${styles.buttonScale}`}>
                                     <div className={menu.image}>
-                                        <Image src={process.env.HOSTNAME + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
+                                        <Image loader={myLoader} src={process.env.HOSTNAME + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
                                     </div>
                                     <div className={menu.filtreColor}></div>
                                     <div className={menu.filtreNoir}></div>
@@ -98,13 +103,4 @@ export function defOrdre(index, ordre) {
     } else {
         return index *0.1
     }
-}
-
-export async function getServerSideProps() {
-    const res = await fetch(process.env.HOSTNAME + `list.json`, {
-        headers: { Accept: "application/json" },
-    })
-    const collection = await res.json()
-    console.error(collection)
-    return{props:{collection}}
 }

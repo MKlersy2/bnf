@@ -4,7 +4,7 @@ import homepage from '../styles/homepage.module.css';
 import Casque from '../components/svg/casque';
 import Link from 'next/link';
 
-export default function Home() {
+export default function Home() {  
   return (
     <div className={styles.container}>
       <Head>

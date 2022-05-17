@@ -14,8 +14,22 @@ import { launchMusic, stopMusic, retour, stopQuitMusic } from '../script/musicPl
 import MusicPlayer from '../script/musicPlayer';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import collection from '../api/collection.json';
 
-export default function Son({nameCollection, collectionSon}) {
+export default function Son() {
+
+    const myLoader = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`
+    }
+
+    const myLocalLoader = ({ src, width, quality }) => {
+        return `${process.env.TESTURL}${src}?w=${width}&q=${quality || 75}`
+    }
+
+    const reference = 3;
+    const nameCollection = collection[reference].name;
+    const collectionSon = collection[reference].sons;
+
     const router = useRouter();
     useEffect(() => {
         router.events.on('routeChangeComplete', () => {
@@ -72,11 +86,11 @@ export default function Son({nameCollection, collectionSon}) {
                                     <div className={sons.globalDisplay}>
                                         <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic(process.env.HOSTNAME +collectionSon.url, index)} >
                                             <div id={`bigPlay` + index} className={`${sons.play}`}>
-                                                <Image width={67} height={80} src={'/icon/bigplay.svg'} alt={'Gros bouton play'}/>
+                                                <Image loader={myLocalLoader} width={67} height={80} src={'/icon/bigplay.svg'} alt={'Gros bouton play'}/>
                                                 {/* <BigPlay/> */}
                                             </div>
                                         </div>
-                                        <Image src={process.env.HOSTNAME + collectionSon.img} width={700} height={700} alt={collectionSon.desc}/>
+                                        <Image loader={myLoader} src={process.env.HOSTNAME + collectionSon.img} width={700} height={700} alt={collectionSon.desc}/>
                                     </div>
                                     <div className={sons.playerButton}>
                                         <div className={sons.progressPlayer}>
@@ -87,8 +101,8 @@ export default function Son({nameCollection, collectionSon}) {
                                         <div className={sons.totalTime}></div>
                                         <div className={`${sons.actionsPlayer} ${styles.displayFlex}`}>
                                             <div className={sons.backPlayer} onClick={() => retour(index)}><Replay/></div>
-                                            <div id={`play` + index} onClick={() => launchMusic(process.env.HOSTNAME +collectionSon.url, index)} className={sons.playPlayer}><Image width={23} height={26} src={'/icon/start.svg'} alt={'Petit bouton play'}/></div>
-                                            <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image width={23} height={27} src={'/icon/pause.svg'} alt={'Bouton pause'}/></div>
+                                            <div id={`play` + index} onClick={() => launchMusic(process.env.HOSTNAME +collectionSon.url, index)} className={sons.playPlayer}><Image loader={myLocalLoader} width={23} height={26} src={'/icon/start.svg'} alt={'Petit bouton play'}/></div>
+                                            <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image loader={myLocalLoader} width={23} height={27} src={'/icon/pause.svg'} alt={'Bouton pause'}/></div>
                                             <div className={sons.puissancePlayer}>
                                                 <div className={sons.puissanceIcon}><SonIcon/></div>
                                                 <div className={sons.puissanceGlobal}>
@@ -124,16 +138,4 @@ export default function Son({nameCollection, collectionSon}) {
             </main>
         </div>
     )
-}
-
-export async function getServerSideProps(context) {
-    const { id } = context.query
-    const reference = id;
-    const res = await fetch(process.env.HOSTNAME + `list.json`, {
-        headers: { Accept: "application/json" },
-    })
-    const collectionSons = await res.json()
-    const collectionSon = collectionSons[reference].sons;
-    const nameCollection = collectionSons[reference].name;
-    return{props:{nameCollection, collectionSon}}
 }
