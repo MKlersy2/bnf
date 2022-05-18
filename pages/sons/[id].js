@@ -10,38 +10,45 @@ import SonIcon from '../../components/svg/son';
 import Script from '../script/scriptMenu';
 import WaitCount from '../script/waitCount';
 import { motion } from 'framer-motion'
-import { launchMusic, stopMusic, retour, stopQuitMusic } from '../script/musicPlayer';
+import { launchMusic, stopMusic, retour, stopQuitMusic, openSon } from '../script/musicPlayer';
 import MusicPlayer from '../script/musicPlayer';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import collection from '../api/collection.json';
+import { useState, useEffect } from "react";
 
 export default function Son() {
+    const router = useRouter()
+    const { id } = router.query
+    const [listSon, setSons] = useState([])
+    const [nameSon, setName] = useState([])
+    async function fetchPosts() {
+        const reference = id;
+        const request = await fetch(`${process.env.HOSTNAME}requestList.php?f=list`);
+        const data = await request.json();
+        // setSons(Object.entries(data)[0][1][reference]['sons']);
+        // setName(Object.entries(data)[0][1][reference]['name']);
+        setSons(data[reference]['sons']);
+        setName(data[reference]['name']);
+    }
 
     const myLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`
     }
 
     const myLocalLoader = ({ src, width, quality }) => {
-        return `${process.env.TESTURL}${src}?w=${width}&q=${quality || 75}`
+        return `${process.env.ENV_URL}${src}?w=${width}&q=${quality || 75}`
     }
 
-    const reference = 3;
-    const nameCollection = collection[reference].name;
-    const collectionSon = collection[reference].sons;
-
-    const router = useRouter();
     useEffect(() => {
+        fetchPosts();
         router.events.on('routeChangeComplete', () => {
             stopQuitMusic()
         })
         return () => {
             router.events.off('routeChangeComplete', () => {
-                console.log('on quitte')
             })
         };
     }, [router.events]);
-    const titre = nameCollection;
+    // const titre = nameCollection;
     const variants = {
         hidden: { opacity: 0, x: 200, y: 0 },
         enter: { opacity: 1, x: 0, y: 0 },
@@ -70,7 +77,7 @@ export default function Son() {
                                 exit="exit"
                                 variants={variants2}
                                 transition={{ type: 'linear' }}
-                                className={title.title}>{titre}</motion.div>
+                                className={title.title}>{nameSon}</motion.div>
                         </div>
                     </div>
                     <motion.div
@@ -80,17 +87,16 @@ export default function Son() {
                         transition={{ type: 'linear' }}
                         variants={variants}
                         className={`${sons.subGlobal} ${styles.displayFlex}`}>
-                        {collectionSon.map((collectionSon, index) => (
+                        {listSon.map((collectionSon, index) => (
                             <div id={`player`+index} key={index} className={`${sons.playerGlobal}`}>
                                 <div className={sons.playerSubGlobal}>
                                     <div className={sons.globalDisplay}>
-                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic(process.env.HOSTNAME +collectionSon.url, index)} >
+                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} >
                                             <div id={`bigPlay` + index} className={`${sons.play}`}>
-                                                <Image loader={myLocalLoader} width={67} height={80} src={'/icon/bigplay.svg'} alt={'Gros bouton play'}/>
-                                                {/* <BigPlay/> */}
+                                                <Image loader={myLocalLoader} width={67} height={80} src={'icon/bigplay.svg'} alt={'Gros bouton play'}/>
                                             </div>
                                         </div>
-                                        <Image loader={myLoader} src={process.env.HOSTNAME + collectionSon.img} width={700} height={700} alt={collectionSon.desc}/>
+                                        <Image loader={myLoader} src={process.env.HOST_FILES + collectionSon.img} width={700} height={700} alt={collectionSon.desc}/>
                                     </div>
                                     <div className={sons.playerButton}>
                                         <div className={sons.progressPlayer}>
@@ -101,9 +107,9 @@ export default function Son() {
                                         <div className={sons.totalTime}></div>
                                         <div className={`${sons.actionsPlayer} ${styles.displayFlex}`}>
                                             <div className={sons.backPlayer} onClick={() => retour(index)}><Replay/></div>
-                                            <div id={`play` + index} onClick={() => launchMusic(process.env.HOSTNAME +collectionSon.url, index)} className={sons.playPlayer}><Image loader={myLocalLoader} width={23} height={26} src={'/icon/start.svg'} alt={'Petit bouton play'}/></div>
-                                            <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image loader={myLocalLoader} width={23} height={27} src={'/icon/pause.svg'} alt={'Bouton pause'}/></div>
-                                            <div className={sons.puissancePlayer}>
+                                            <div id={`play` + index} onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} className={sons.playPlayer}><Image loader={myLocalLoader} width={23} height={26} src={'icon/start.svg'} alt={'Petit bouton play'}/></div>
+                                            <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image loader={myLocalLoader} width={23} height={27} src={'icon/pause.svg'} alt={'Bouton pause'}/></div>
+                                            <div onClick={() => openSon(index)} className={sons.puissancePlayer}>
                                                 <div className={sons.puissanceIcon}><SonIcon/></div>
                                                 <div className={sons.puissanceGlobal}>
                                                     <div className={sons.puissancePlayerBg}>
@@ -132,9 +138,9 @@ export default function Son() {
                         <div className={sons.progress}></div>
                     </div>
                 </div>
+                <MusicPlayer/>
                 <Script/>
                 <WaitCount/>
-                <MusicPlayer/>
             </main>
         </div>
     )

@@ -29,7 +29,6 @@ export function launchMusic(url, index) {
             son.currentTime = parseInt(width.replace(/%/g, '')) * son.duration / 100;
         }
         const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
-        console.log(son.duration)
         const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
         const valueTotalTimeMinute = Math.floor(son.duration / 60) < 10 ? '0' + Math.floor(son.duration / 60) : Math.floor(son.duration / 60);
         totalTime.innerHTML = valueTotalTimeMinute + ':' + valueTotalTimeSecond;
@@ -51,6 +50,32 @@ export function launchMusic(url, index) {
     progressPlayer.progress = progress;
     progressPlayer.progressPlayer = progressPlayer;
     progressPlayer.index = index;
+
+
+    const puissance = document.querySelectorAll(`.${sons.playerPuissanceBar}`);
+    const puissanceButton = document.querySelectorAll(`.${sons.playerPuissanceButton}`);
+    const puissancePlayer = document.querySelectorAll(`.${sons.puissancePlayerBg}`);
+    puissancePlayer.forEach((e, index) => {
+        e.addEventListener('mouseup', mouseUpPuissance, false);
+        e.addEventListener('mousedown', mouseDownPuissance, false);
+        e.addEventListener('mousemove', mouseMovePuissance, false);
+        e.puissanceButton = puissanceButton[index];
+        e.puissance = puissance[index];
+        e.puissancePlayer = puissancePlayer[index];
+        e.index = index;
+    })
+
+    const allExcludePuissance = document.querySelector(`:not(.${sons.puissancePlayer})`);
+    allExcludePuissance.addEventListener('click', (e) => {
+        const listExclude = document.querySelectorAll(`.${sons.puissancePlayer}`);
+        listExclude.forEach((el) => {
+            if(el.contains(e.target)) {
+                return;
+            } else {
+                el.lastChild.style.display = 'none';
+            }
+        })
+    })
 
     son.addEventListener("ended", function(){
         stopMusic()
@@ -201,39 +226,17 @@ export function actual() {
     }, 1000);
 }
 
+export function openSon(index) {
+    const puissanceGlobal = document.querySelectorAll(`.${sons.puissancePlayer} > .${sons.puissanceGlobal}`);
+    puissanceGlobal[index].style.display = 'flex';
+}
+
 import React from "react";
 export default class Layout extends React.Component {
     componentDidMount() {
-        const puissance = document.querySelectorAll(`.${sons.playerPuissanceBar}`);
-        const puissanceButton = document.querySelectorAll(`.${sons.playerPuissanceButton}`);
-        const puissancePlayer = document.querySelectorAll(`.${sons.puissancePlayerBg}`);
-        puissancePlayer.forEach((e, index) => {
-            e.addEventListener('mouseup', mouseUpPuissance, false);
-            e.addEventListener('mousedown', mouseDownPuissance, false);
-            e.addEventListener('mousemove', mouseMovePuissance, false);
-            e.puissanceButton = puissanceButton[index];
-            e.puissance = puissance[index];
-            e.puissancePlayer = puissancePlayer[index];
-            e.index = index;
-        })
-        const puissancePlayer2 = document.querySelectorAll(`.${sons.puissancePlayer}`);
-        const puissanceGlobal = document.querySelectorAll(`.${sons.puissancePlayer} > .${sons.puissanceGlobal}`);
-        puissancePlayer2.forEach((element, index) => {
-            element.addEventListener('click', (e) => {
-                puissanceGlobal[index].style.display = 'flex';
-            })
-        });
-        const allExcludePuissance = document.querySelector(`div:not(.${sons.puissancePlayer})`);
-        allExcludePuissance.addEventListener('click', (e) => {
-                const listExclude = document.querySelectorAll(`.${sons.puissancePlayer}`);
-                listExclude.forEach((el) => {
-                    if(el.contains(e.target)) {
-                        return;
-                    } else {
-                        el.lastChild.style.display = 'none';
-                    }
-                })
-        })
+    }
+
+    componentWillUnmount() {
     }
 
     render() {

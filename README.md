@@ -1,12 +1,18 @@
-Afin de lancer le projet convenablement en local:
+Afin de lancer le projet convenablement:
 
-- [Version test] - npm run dev
-- [Version production] - npm run build -> npm run start
-
-
-Modification des liens 
 
 Aller dans le fichier "next.config.js"
 
+
 - Dans la partie "images" -> "domains", ajouter l'url du serveur où sont stockés les fichiers. Par exemple : https://sandbox.fleurdepapier.fr/
-- Dans la partie "env" -> "HOSTNAME", modifier aussi l'url par l'url où sont stockés les fichiers. Par exemple : https://sandbox.fleurdepapier.fr/bnf-bancsonores/ sachant que le json est ici : https://sandbox.fleurdepapier.fr/bnf-bancsonores/list.json
+
+
+- Dans la partie env -> "HOSTNAME" indiqué le dossier parent où se retrouvent le fichier JSON [Par exemple : https://sandbox.fleurdepapier.fr/bnf-bancsonores/ sachant que le json est ici : https://sandbox.fleurdepapier.fr/bnf-bancsonores/list.json]
+- Dans la partie env -> "HOST_FILES" indiqué le dossier parent où sont stockés les fichiers img et mp3 [Par exemple : https://sandbox.fleurdepapier.fr/bnf-bancsonores/ sachant que les images sont ici : https://sandbox.fleurdepapier.fr/bnf-bancsonores/images/]
+
+
+Puis exécuter :
+
+- [Version node.js] - Development: npm run dev | Production: npm run start
+- [Version static] - npm run build
+    - Les fichiers static se retrouvent dans le dossier "out"

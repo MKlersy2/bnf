@@ -7,14 +7,22 @@ import Link from 'next/link';
 import WaitCount from './script/waitCount';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import collection from './api/collection.json';
+import { useState, useEffect } from "react";
 
 export default function Menu() {
+    const [posts, setPosts] = useState([])
     const myLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`
     }
-      
-    console.log(collection)
+    async function fetchPosts() {
+        const request = await fetch(`${process.env.HOSTNAME}requestList.php?f=list`);
+        const data = await request.json()
+        // setPosts(Object.entries(data)[0][1]);
+        setPosts(data);
+    }
+
+    
+    
     const { query } = useRouter();
     const referer = query.referer;
     if(referer == 'son') {
@@ -32,14 +40,16 @@ export default function Menu() {
         }
         var ordre = 'pos';
     }
-
-
+    
+    
     const variants2 = {
         hidden: { opacity: 0, x: 0, y: -100 },
         enter: { opacity: 1, x: 0, y: 0 },
         exit: { opacity: 1, x: 0, y: 0 },
     }
-
+    useEffect(() => {
+        fetchPosts();
+    }, [])
     return (
         <div className={styles.container}>
             <Head>
@@ -64,7 +74,7 @@ export default function Menu() {
                         <div className={title.subTitle}>Choisissez un thème</div>
                     </div>
                     <div className={menu.liste}>
-                        {collection.map((collection, index) => (
+                        {posts.map((collection, index) => (
                             // const val = index*ordre
                             <Link passHref key={index} href={'/sons/' + collection.reference}>
                                 <motion.div 
@@ -75,7 +85,7 @@ export default function Menu() {
                                 transition={{ type: 'linear', delay: defOrdre(index, ordre) }}
                                 className={`${menu.subListe} ${styles.buttonScale}`}>
                                     <div className={menu.image}>
-                                        <Image loader={myLoader} src={process.env.HOSTNAME + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
+                                        <Image loader={myLoader} src={process.env.HOST_FILES + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
                                     </div>
                                     <div className={menu.filtreColor}></div>
                                     <div className={menu.filtreNoir}></div>
@@ -103,4 +113,19 @@ export function defOrdre(index, ordre) {
     } else {
         return index *0.1
     }
+}
+
+
+export async function findInfo() {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    await fetch("http://localhost:8888/request.php?f=list", requestOptions)
+    .then(response => response.text())
+    .then(async (result) => {
+        return await JSON.parse(result);
+    })
+    .catch(error => '');
 }
