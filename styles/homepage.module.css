@@ -2,7 +2,7 @@
     position: absolute;
     top:0;
     left:0; 
-    width: 1200px;
+    width: 100vw;
     height: 1920px;
     z-index: -1;
     object-fit: cover;
@@ -71,6 +71,7 @@
 }
 
 .button {
+    font-family: 'GraphikMedium';
     margin-top:20px;
     margin-left: 140px;
     font-size: 30px;

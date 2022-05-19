@@ -39,7 +39,9 @@ export default function Son() {
     }
 
     useEffect(() => {
-        fetchPosts();
+        if(router.isReady) {
+            fetchPosts();
+        }
         router.events.on('routeChangeComplete', () => {
             stopQuitMusic()
         })
@@ -47,7 +49,7 @@ export default function Son() {
             router.events.off('routeChangeComplete', () => {
             })
         };
-    }, [router.events]);
+    }, [router.isReady]);
     // const titre = nameCollection;
     const variants = {
         hidden: { opacity: 0, x: 200, y: 0 },

@@ -68,7 +68,7 @@
     min-width: 700px;
     height: 1220px;
     border-radius: 10px 10px 0 0;
-    margin: 100px 0 0 150px;
+    margin: 0px 0 0 150px;
     z-index: 1;
     -webkit-border-radius: 10px 10px 0 0;
     -moz-border-radius: 10px 10px 0 0;
@@ -199,6 +199,11 @@
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
 }
 
 .pausePlayer, .playPlayer, .backPlayer, .puissancePlayer {
@@ -311,4 +316,5 @@
 }
 .totalTime {
     right: 15px;
+    opacity: .5;
 }

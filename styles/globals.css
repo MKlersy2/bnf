@@ -64,3 +64,6 @@ div {
 .toggle {
   display: none !important;
 }
+.toggleOpacity {
+  opacity: 0;
+}

@@ -13,7 +13,7 @@ export function launchMusic(url, index) {
     const buttonPause = document.querySelector(`#pause` + index);
     const buttonStart = document.querySelector(`#play` + index);
 
-    element.classList.add('toggle');
+    element.classList.add('toggleOpacity');
     buttonStart.classList.add('toggle');
     buttonPause.classList.remove('toggle');
     const son = new Audio(url);
@@ -31,7 +31,7 @@ export function launchMusic(url, index) {
         const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
         const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
         const valueTotalTimeMinute = Math.floor(son.duration / 60) < 10 ? '0' + Math.floor(son.duration / 60) : Math.floor(son.duration / 60);
-        totalTime.innerHTML = valueTotalTimeMinute + ':' + valueTotalTimeSecond;
+        totalTime.innerHTML = valueTotalTimeMinute + ' : ' + valueTotalTimeSecond;
         actualSon = son;
         actualIndex = index;
         actual();
@@ -174,7 +174,7 @@ export function stopMusic(detect) {
         progressPlayer.removeEventListener('mousedown', mouseMoveProgress, false);
         progressPlayer.removeEventListener('mouseup', mouseUpProgress, false);
         progressPlayer.removeEventListener('mousemove', mouseDownProgress, false);
-        element.classList.remove('toggle');
+        element.classList.remove('toggleOpacity');
         buttonStart.classList.remove('toggle');
         buttonPause.classList.add('toggle');
         actualSon.pause();
