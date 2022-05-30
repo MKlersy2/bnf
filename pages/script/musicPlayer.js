@@ -205,7 +205,7 @@ export function stopMusic(detect) {
         var timeleft = timeInit;
         const timerCount = setInterval(function() {
             if(timeleft <= 0) {
-                window.location.href = '/waitPage';
+                window.location.href = '/waitPage.html';
                 clearInterval(timerCount);
             }
             timeleft-=1;
