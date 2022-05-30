@@ -14,14 +14,16 @@
 .button {
   padding: 30px 60px;
   background-color: var(--faux-blanc);
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
   width: max-content;
-  color: black;
+  color: #43063F;
+  font-family: 'GraphikMedium';
   text-transform: uppercase;
+  font-size: 22px !important;
   transition:transform .3s, background-color .2s;
   -webkit-transition:transform .3s, background-color .2s;
   -moz-transition:transform .3s, background-color .2s;
