@@ -85,7 +85,7 @@ export default function Menu() {
                                 transition={{ type: 'linear', delay: defOrdre(index, ordre) }}
                                 className={`${menu.subListe} ${styles.buttonScale}`}>
                                     <div className={menu.image}>
-                                        <Image loader={myLoader} src={process.env.HOST_FILES + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
+                                        <Image loading="eager" loader={myLoader} src={process.env.HOST_FILES + 'images/' + collection.img} width={400} height={400} alt={collection.name}/>
                                     </div>
                                     <div className={menu.filtreColor}></div>
                                     <div className={menu.filtreNoir}></div>

@@ -10,7 +10,7 @@ import SonIcon from '../../components/svg/son';
 import Script from '../script/scriptMenu';
 import WaitCount from '../script/waitCount';
 import { motion } from 'framer-motion'
-import { launchMusic, stopMusic, retour, stopQuitMusic, openSon } from '../script/musicPlayer';
+import { launchMusic, stopMusic, retour, stopQuitMusic, openSon, chargeMusic } from '../script/musicPlayer';
 import MusicPlayer from '../script/musicPlayer';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
@@ -109,7 +109,7 @@ export default function Son() {
                                         <div className={sons.totalTime}></div>
                                         <div className={`${sons.actionsPlayer} ${styles.displayFlex}`}>
                                             <div className={sons.backPlayer} onClick={() => retour(index)}><Replay/></div>
-                                            <div id={`play` + index} onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} className={sons.playPlayer}><Image loader={myLocalLoader} width={23} height={26} src={'icon/start.svg'} alt={'Petit bouton play'}/></div>
+                                            <div id={`play` + index} urlofson={process.env.HOST_FILES +collectionSon.url} onLoad={() => chargeMusic(process.env.HOST_FILES +collectionSon.url, index)} onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} className={sons.playPlayer}><Image loader={myLocalLoader} width={23} height={27} src={'icon/start.svg'} alt={'Petit bouton play'}/></div>
                                             <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image loader={myLocalLoader} width={23} height={27} src={'icon/pause.svg'} alt={'Bouton pause'}/></div>
                                             <div onClick={() => openSon(index)} className={sons.puissancePlayer}>
                                                 <div className={sons.puissanceIcon}><SonIcon/></div>

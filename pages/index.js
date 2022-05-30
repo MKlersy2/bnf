@@ -18,7 +18,7 @@ export default function Home() {
           <source src="/video/vynil.mp4" />
         </video>
         <div className={`${homepage.global} ${styles.displayFlex}`}>
-          <div className={homepage.title}>
+          <div className={homepage.title} style={{opacity:0}}>
             <div className={`${styles.displayFlex} ${homepage.rowTitle}`}>
               <div className={homepage.col}></div>
               <div className={homepage.col}>Collections</div>
@@ -30,7 +30,7 @@ export default function Home() {
               <div className={homepage.col}></div>
             </div>
           </div>
-          <div className={`${homepage.subtitle} ${styles.displayFlex}`}>
+          <div className={`${homepage.subtitle} ${styles.displayFlex}`} style={{opacity:0}}>
             <div className={homepage.subIcon}><Casque/></div>
             <div className={homepage.subText}>Prenez un casque</div>
           </div>

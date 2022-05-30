@@ -7,7 +7,18 @@ const sonListened = [];
 
 let actualProgress;
 
-export function launchMusic(url, index) {
+export function chargeMusic(url, index) {
+    const son = new Audio(url);
+    son.onloadedmetadata = function() {
+        console.log(url, index, son.duration)
+        const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
+        const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
+        const valueTotalTimeMinute = Math.floor(son.duration / 60) < 10 ? '0' + Math.floor(son.duration / 60) : Math.floor(son.duration / 60);
+        totalTime.innerHTML = valueTotalTimeMinute + ' : ' + valueTotalTimeSecond;
+      };
+}
+
+export function launchMusic(url, index, retour) {
     if(actualSon!='') stopMusic('no');
     const element = document.querySelector(`#bigPlayGlobal` + index + `.${sons.playerLaunch}`);
     const buttonPause = document.querySelector(`#pause` + index);
@@ -26,7 +37,7 @@ export function launchMusic(url, index) {
             } else {
                 var width = document.querySelector(`#player` + index + ` > div > div > div > .${sons.playerProgressBar}`).style.width
             }
-            son.currentTime = parseInt(width.replace(/%/g, '')) * son.duration / 100;
+            son.currentTime = (width.replace(/%/g, '')) * son.duration / 100;
         }
         const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
         const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
@@ -37,6 +48,13 @@ export function launchMusic(url, index) {
         actual();
         clearInterval(window.timerCount);
         sonListened.push(index);
+        if(retour == 'retour') {
+            actualSon.currentTime = 0;
+            const progress = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressBar}`);
+            const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);
+            progress.style.width = '0%';
+            progressButton.style.left = '0%';
+        }
     }
 
     const progress = document.querySelector(`#player` + index + ` > div > div > div > .${sons.playerProgressBar}`);
@@ -80,6 +98,7 @@ export function launchMusic(url, index) {
     son.addEventListener("ended", function(){
         stopMusic()
    });
+
 }
 
 export function mouseDownProgress(e) {
@@ -186,7 +205,7 @@ export function stopMusic(detect) {
         var timeleft = timeInit;
         const timerCount = setInterval(function() {
             if(timeleft <= 0) {
-                window.location.href = '/wait';
+                window.location.href = '/wait.html';
                 clearInterval(timerCount);
             }
             timeleft-=1;
@@ -202,6 +221,9 @@ export function retour(indexInput) {
         const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);
         progress.style.width = '0%';
         progressButton.style.left = '0%';
+    } else {
+        const urlSon = document.querySelector(`#play` + indexInput).getAttribute('urlofson');
+        launchMusic(urlSon, indexInput, 'retour');
     }
 }
 
@@ -223,7 +245,7 @@ export function actual() {
                 clearInterval(actualProgress)
             }
         }
-    }, 1000);
+    }, 10);
 }
 
 export function openSon(index) {
