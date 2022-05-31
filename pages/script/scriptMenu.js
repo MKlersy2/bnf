@@ -6,7 +6,7 @@ export default class Layout extends React.Component {
         const progress = document.querySelector(`.${sons.progress}`);
         const playerProgress = document.querySelector(`.${sons.subGlobal}`);
         playerProgress.addEventListener('scroll', function(e) {
-            const scrollPourcent = (e.target.scrollLeft)/(e.target.scrollWidth - 1200)*100;
+            const scrollPourcent = (e.target.scrollLeft)/(e.target.scrollWidth - 1080)*100;
             progress.style.left = `${scrollPourcent}%`;
         });
         this.playerProgress = playerProgress;

@@ -18,7 +18,7 @@
 
 /** @type {import('next').NextConfig} */
 let baseConfig = {
-  basePath: "/out",
+  basePath: "",
   reactStrictMode: false,
   images: {
   domains: ['https://multimedia-ext.bnf.fr', 'multimedia-ext.bnf.fr'],

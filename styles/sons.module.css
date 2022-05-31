@@ -55,8 +55,9 @@
     left:0;
     height: 100vh;
     flex-direction: row;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    /* overflow-x: scroll;
+    overflow-y: hidden; */
+    overflow: auto;
     width: 100%;
 }
 
