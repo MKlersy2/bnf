@@ -16,7 +16,7 @@ export default function Wait() {
             <link rel="icon" href="/favicon.ico" />
             </Head>
             <video className={homepage.vynil} autoPlay loop muted>
-                <source src="/video/vynil.mp4" />
+                <source src={process.env.basePath + "/video/vynil.mp4"} />
             </video>
             <main className={`${styles.main} index`} onClick={() => router.back()}>
                 <div className={waiting.global}>

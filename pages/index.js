@@ -15,7 +15,7 @@ export default function Home() {
 
       <main className={`${styles.main} index`}>
         <video className={homepage.vynil} autoPlay loop muted>
-          <source src="/video/vynil.mp4" />
+          <source src={process.env.basePath + "/video/vynil.mp4"} />
         </video>
         <div className={`${homepage.global} ${styles.displayFlex}`}>
           <div className={homepage.title} style={{opacity:0}}>

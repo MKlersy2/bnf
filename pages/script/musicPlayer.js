@@ -96,6 +96,11 @@ export function launchMusic(url, index, retour) {
     })
 
     son.addEventListener("ended", function(){
+        actualSon.currentTime = 0;
+        const progress = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressBar}`);
+        const progressButton = document.querySelector(`#player` + actualIndex + ` > div > div > div > .${sons.playerProgressButton}`);
+        progress.style.width = '0%';
+        progressButton.style.left = '0%';
         stopMusic()
    });
 

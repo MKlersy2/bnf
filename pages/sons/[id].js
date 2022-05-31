@@ -108,11 +108,11 @@ export default function Son() {
                                         <div className={sons.actualTime}></div>
                                         <div className={sons.totalTime}></div>
                                         <div className={`${sons.actionsPlayer} ${styles.displayFlex}`}>
-                                            <div className={sons.backPlayer} onClick={() => retour(index)}><Replay/></div>
-                                            <div id={`play` + index} urlofson={process.env.HOST_FILES +collectionSon.url} onLoad={() => chargeMusic(process.env.HOST_FILES +collectionSon.url, index)} onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} className={sons.playPlayer}><Image loader={myLocalLoader} width={23} height={27} src={'icon/start.svg'} alt={'Petit bouton play'}/></div>
-                                            <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} toggle`}><Image loader={myLocalLoader} width={23} height={27} src={'icon/pause.svg'} alt={'Bouton pause'}/></div>
-                                            <div onClick={() => openSon(index)} className={sons.puissancePlayer}>
-                                                <div className={sons.puissanceIcon}><SonIcon/></div>
+                                            <div className={`${sons.backPlayer} ${sons.buttonEffect}`} onClick={() => retour(index)}><Replay/></div>
+                                            <div id={`play` + index} urlofson={process.env.HOST_FILES +collectionSon.url} onLoad={() => chargeMusic(process.env.HOST_FILES +collectionSon.url, index)} onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} className={`${sons.playPlayer} ${sons.buttonEffect}`}><Image loader={myLocalLoader} width={23} height={27} src={'icon/start.svg'} alt={'Petit bouton play'}/></div>
+                                            <div id={`pause` + index} onClick={() => stopMusic()} className={`${sons.pausePlayer} ${sons.buttonEffect} toggle`}><Image loader={myLocalLoader} width={23} height={27} src={'icon/pause.svg'} alt={'Bouton pause'}/></div>
+                                            <div onClick={() => openSon(index)} className={`${sons.puissancePlayer}`}>
+                                                <div className={`${sons.puissanceIcon} ${sons.buttonEffect}`}><SonIcon/></div>
                                                 <div className={sons.puissanceGlobal}>
                                                     <div className={sons.puissancePlayerBg}>
                                                         <div className={sons.playerPuissanceBar}></div>
