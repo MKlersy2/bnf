@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 
 export default function Menu() {
     const [posts, setPosts] = useState([])
+    const [cred, setCred] = useState([])
     const myLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`
     }
@@ -18,7 +19,8 @@ export default function Menu() {
         const request = await fetch(`${process.env.HOSTNAME}requestList.php?f=list`);
         const data = await request.json()
         // setPosts(Object.entries(data)[0][1]);
-        setPosts(data);
+        setPosts(data.slice(0,-1));
+        setCred(data.slice(-1)[0]);
     }
 
     
@@ -96,7 +98,7 @@ export default function Menu() {
                             </Link>
                         ))}
                     </div>
-                    <div className={menu.credits}>Ligne Crédits</div>
+                    <div className={menu.credits}>{cred.credits}</div>
                 </div>
                 <WaitCount/>
             </main>
