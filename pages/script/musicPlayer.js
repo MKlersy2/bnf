@@ -12,9 +12,11 @@ export function chargeMusic(url, index) {
     const son = new Audio(url);
     son.onloadedmetadata = function() {
         const totalTime = document.querySelector(`#player` + index + ` > div > div > .${sons.totalTime}`);
-        const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
-        const valueTotalTimeMinute = Math.floor(son.duration / 60) < 10 ? '0' + Math.floor(son.duration / 60) : Math.floor(son.duration / 60);
-        totalTime.innerHTML = valueTotalTimeMinute + ' : ' + valueTotalTimeSecond;
+        if(totalTime !== null) {
+            const valueTotalTimeSecond = Math.floor(son.duration % 60) < 10 ? '0' + Math.floor(son.duration % 60) : Math.floor(son.duration % 60);
+            const valueTotalTimeMinute = Math.floor(son.duration / 60) < 10 ? '0' + Math.floor(son.duration / 60) : Math.floor(son.duration / 60);
+            totalTime.innerHTML = valueTotalTimeMinute + ' : ' + valueTotalTimeSecond;
+        }
       };
 }
 
