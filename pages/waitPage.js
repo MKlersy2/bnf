@@ -16,9 +16,9 @@ export default function Wait() {
             <link rel="icon" href="/favicon.ico" />
             </Head>
             <video className={homepage.vynil} autoPlay loop muted>
-                <source src={process.env.HOSTNAME + "/video/veille.mp4"} />
+                <source src={process.env.basePath + "/video/vynil.mp4"} />
             </video>
-            <main className={`${styles.main} index`} onClick={() => router.back()}>
+            <main className={`${styles.main} wait`} onClick={() => router.back()}>
                 <div className={waiting.global}>
                     <div className={waiting.barre}></div>
                     <div className={waiting.texte}>Touchez l&apos;écran ou votre consultation va s&apos;arrêter</div>
