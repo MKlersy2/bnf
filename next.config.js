@@ -31,8 +31,8 @@ let baseConfig = {
   env: {
   // Pour avoir accès au basePath depuis env
   basePath: baseConfig.basePath ? baseConfig.basePath : "",
-  HOSTNAME: 'http://localhost:8888/',//https://sandbox.fleurdepapier.fr/bnf-bancsonores/
-  HOST_FILES: 'http://localhost:8888/',//https://sandbox.fleurdepapier.fr/bnf-bancsonores/
+  HOSTNAME: 'https://sandbox.fleurdepapier.fr/bnf-bancsonores/',//http://localhost:8888/
+  HOST_FILES: 'https://sandbox.fleurdepapier.fr/bnf-bancsonores/',//http://localhost:8888/
   ENV_URL: '../'
   }
   }
