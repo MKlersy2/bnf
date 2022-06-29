@@ -128,7 +128,7 @@ export default function Son() {
                                     <div className={sons.desc}>{collectionSon.desc}</div>
                                     <div className={sons.subDesc}>{collectionSon.subDesc}</div>
                                     <div className={sons.cote}>{collectionSon.cote}</div>
-                                    <div className={sons.prov}>Prov. : {collectionSon.provenance}</div>
+                                    <div className={sons.prov}>{collectionSon.provenance}</div>
                                 </div>
                             </div>
                         ))}

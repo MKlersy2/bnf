@@ -35,7 +35,9 @@ export default function Home() {
             <div className={homepage.subText}>Prenez un casque</div>
           </div>
           <Link href={'/menu?referrer=index'} passHref>
-            <div className={`${styles.button} ${homepage.button}`}>Commencer</div>
+            <div className={homepage.globalButton}>
+              <div className={`${styles.button} ${homepage.button}`}>Commencer</div>
+            </div>
           </Link>
         </div>
       </main>

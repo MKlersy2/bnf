@@ -98,7 +98,9 @@ export default function Menu() {
                             </Link>
                         ))}
                     </div>
-                    <div className={menu.credits}>{cred.credits}</div>
+                    <Link href={'/credits'} passHref>
+                        <div className={menu.credits}>{cred.credits}</div>
+                    </Link>
                 </div>
                 <WaitCount/>
             </main>
