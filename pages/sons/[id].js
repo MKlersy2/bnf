@@ -93,7 +93,7 @@ export default function Son() {
                             <div id={`player`+index} key={index} className={`${sons.playerGlobal}`}>
                                 <div className={sons.playerSubGlobal}>
                                     <div className={sons.globalDisplay}>
-                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`}onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} >
+                                        <div id={`bigPlayGlobal` + index} className={`${sons.playerLaunch}`} onClick={() => launchMusic(process.env.HOST_FILES +collectionSon.url, index)} >
                                             <div id={`bigPlay` + index} className={`${sons.play}`}>
                                                 <Image loader={myLocalLoader} width={67} height={80} src={'icon/bigplay.svg'} alt={'Gros bouton play'}/>
                                             </div>

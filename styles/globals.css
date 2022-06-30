@@ -111,4 +111,10 @@ div {
 }
 .toggleOpacity {
   opacity: 0;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  pointer-events: none;
 }
